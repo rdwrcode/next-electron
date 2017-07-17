@@ -51,6 +51,11 @@ Then modify loadURL in main.js. Run it.
 
 ![hello](https://github.com/rdwrcode/next-electron/raw/master/images/hello-next.png "Hello Next")
 
+## 3 production
+```
+yarn add --dev electron-builder
+```
+modify pacakge.json
 
 
 
