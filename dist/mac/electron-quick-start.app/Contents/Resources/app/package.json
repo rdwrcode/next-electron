@@ -1,0 +1,19 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "repository": "https://github.com/electron/electron-quick-start",
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "electron-is-dev": "^0.2.0",
+    "electron-next": "^3.0.7"
+  },
+  "extraResources": [
+    {
+      "from": "renderer/out",
+      "to": "app/renderer"
+    }
+  ]
+}

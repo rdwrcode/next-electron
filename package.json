@@ -28,5 +28,14 @@
   "dependencies": {
     "electron-is-dev": "^0.2.0",
     "electron-next": "^3.0.7"
-  }
+  },
+  "build": {
+    "asar": false
+  },
+  "extraResources": [
+    {
+      "from": "renderer/out",
+      "to": "app/renderer"
+    }
+  ]
 }

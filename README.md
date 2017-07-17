@@ -57,5 +57,9 @@ yarn add --dev electron-builder
 ```
 modify pacakge.json
 
+```
+npm run dist
+```
+You will get the image built in dist directory.
 
 
