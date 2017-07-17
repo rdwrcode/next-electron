@@ -1,8 +1,13 @@
+// 
+const isDev = require('electron-is-dev')
+
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+// import this to use next.js to render 
+const prepareNext = require('electron-next')
 
 const path = require('path')
 const url = require('url')
@@ -16,11 +21,23 @@ function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600})
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  //mainWindow.loadURL(url.format({
+  //  pathname: path.join(__dirname, 'index.html'),
+  //  protocol: 'file:',
+  //  slashes: true
+  //}))
+  let entry
+
+  if (isDev) {
+    entry = 'http://localhost:8000/start'
+  } else {
+    entry = url.format({
+      pathname: path.join(__dirname, './renderer/start/index.html'),
+      protocol: 'file:',
+      slashes: true
+    })
+  }
+  mainWindow.loadURL(entry)
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -37,7 +54,13 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+
+// we have to replace the following line.
+//app.on('ready', createWindow)
+app.on('ready', async () => {
+  await prepareNext('./renderer')
+  createWindow()
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

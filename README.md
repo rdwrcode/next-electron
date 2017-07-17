@@ -2,7 +2,7 @@
 
 this app is built by following this [link](https://leo.im/2017/electron-next).
 
-## setup
+## 1 setup
 ```
 git clone https://github.com/electron/electron-quick-start
 yarn
@@ -19,6 +19,37 @@ npm start
 ```
 
 ![hello](https://github.com/rdwrcode/next-electron/raw/master/images/hello-electron.png "Hello Electron")
+
+## 2 renderer
+Use [now-desktop](https://github.com/zeit/now-desktop) as an example.
+
+```
+mkdir renderer && cd renderer
+mkdir pages && cd pages
+```
+
+then create start.js as the entry point for next.js and create next.config.js inside renderer to let next.js know where to find start.js.
+
+change main.js to get next.js called.
+* import electron-next
+```
+const prepareNext = require('electron-next')
+```
+* replace the existing event listener 
+```
+app.on('ready', createWindow)
+```
+with 
+```
+app.on('ready', async () => {
+  await prepareNext('./renderer')
+  createWindow()
+})
+```
+
+Then modify loadURL in main.js. Run it.
+
+![hello](https://github.com/rdwrcode/next-electron/raw/master/images/hello-next.png "Hello Next")
 
 
 
