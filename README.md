@@ -1,6 +1,7 @@
 # next.js + electron.js
 
 this app is built by following this [link](https://leo.im/2017/electron-next).
+it is also summarized in one [boilerplate](https://github.com/leo/electron-next-skeleton)
 
 ## 1 setup
 ```
